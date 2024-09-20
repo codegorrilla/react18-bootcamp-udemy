@@ -16,13 +16,29 @@ function App() {
 	const [isCompleted, setIsCompleted] = useState(false);
 
 	useEffect(()=>{
-		console.log('Called');
-	}, [groceryItems])
+		//console.log('Called');
+		determineCompletedStatus();
+	}, [groceryItems]);
 
 	//getting the input value
 	const handleChangeInputValue = (e) => {
 		setInputVal(e.target.value);
 	};
+
+	//checking status of all list items
+	const determineCompletedStatus = ()=>{
+		if(!groceryItems.length){
+			return setIsCompleted(false);
+		}
+
+		let isAllCompleted = true;
+
+		groceryItems.forEach(item =>{
+			if (!item.completed) isAllCompleted = false;
+		});
+
+		setIsCompleted(isAllCompleted);
+	}
 
 	//adding input values as list items
 	const handleAddGroceryItem = (e) => {
@@ -46,6 +62,7 @@ function App() {
 
 				setGroceryItems(updatedGroceryList);
 				setInputVal('');
+				determineCompletedStatus();
 			}
 		}
 	};
@@ -71,20 +88,7 @@ function App() {
 		setGroceryItems(updatedGroceryList);
 	};
 
-	// const determineCompletedStatus = ()=>{
-	// 	if(!groceryItems.length){
-	// 		return setIsCompleted(false)
-	// 	}
-
-	// 	let isAllCompleted = true;
-
-	// 	groceryItems.forEach(item=>{
-	// 		if(!item.completed) isAllCompleted = false;
-	// 	});
-
-	// 	setIsCompleted(isAllCompleted);
-	// }
-
+	
 	//rendering item list
 	const renderGroceryList = () => {
 		return groceryItems.map((item, index) => (
