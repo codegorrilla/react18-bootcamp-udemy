@@ -111,6 +111,17 @@ function App() {
 		));
 	};
 
+	const selectAllTasks = () => {
+		const updatedGroceryList = [...groceryItems].map((item) => {
+			return {
+				...item,
+				completed: true,
+			};
+		});
+
+		setGroceryItems(updatedGroceryList);
+	};
+
 	return (
 		<main className="App">
 			<div>
@@ -118,6 +129,8 @@ function App() {
 				<div className="header">
 					<h1>Grocery List</h1>
 					<img src={groceryCart} alt="" />
+					{groceryItems.length && <button onClick={selectAllTasks}>Select all items</button>}
+					{/* {groceryItems.length && <button>Delete all items</button>} */}
 					<input
 						type="text"
 						placeholder="Add an item"
