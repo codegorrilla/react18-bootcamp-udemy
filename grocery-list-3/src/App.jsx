@@ -2,50 +2,45 @@ import './App.css';
 import groceryCart from './assets/grocery-cart.png';
 import { useState, useEffect } from 'react';
 
-// {
-//   name: 'Banana',
-//   quantity: 1,
-//   completed: false
-// }
-
 function App() {
+	//hooks
 	const [inputVal, setInputVal] = useState('');
-
 	const [groceryItems, setGroceryItems] = useState([]);
-
 	const [isCompleted, setIsCompleted] = useState(false);
 
-	useEffect(()=>{
-		//console.log('Called');
+	useEffect(() => {
 		determineCompletedStatus();
 	}, [groceryItems]);
 
-	//getting the input value
-	const handleChangeInputValue = (e) => {
+	//getting input text value
+	const handleInputVal = (e) => {
+		//console.log(e.target.value);
 		setInputVal(e.target.value);
 	};
 
 	//checking status of all list items
-	const determineCompletedStatus = ()=>{
-		if(!groceryItems.length){
+	const determineCompletedStatus = () => {
+		if (!groceryItems.length) {
 			return setIsCompleted(false);
 		}
 
 		let isAllCompleted = true;
 
-		groceryItems.forEach(item =>{
-			if (!item.completed) isAllCompleted = false;
+		groceryItems.forEach((item) => {
+			if (!item.completed) {
+				isAllCompleted = false;
+			}
 		});
 
 		setIsCompleted(isAllCompleted);
-	}
+	};
 
-	//adding input values as list items
-	const handleAddGroceryItem = (e) => {
+	//adding inout values as item list array
+	const handleAddGroceryItems = (e) => {
 		if (e.key === 'Enter') {
 			if (inputVal) {
 				const updatedGroceryList = [...groceryItems];
-				//console.log(updatedGroceryList);
+
 				const itemIndex = updatedGroceryList.findIndex(
 					(item) => item.name === inputVal
 				);
@@ -60,18 +55,15 @@ function App() {
 					updatedGroceryList[itemIndex].quantity++;
 				}
 
+				console.log(updatedGroceryList);
 				setGroceryItems(updatedGroceryList);
 				setInputVal('');
-				determineCompletedStatus();
 			}
 		}
 	};
 
-	console.log(groceryItems);
-
 	//deleting an item
 	const handleRemoveItem = (name) => {
-		//console.log(name);
 		const updatedGroceryList = [...groceryItems].filter(
 			(item) => item.name !== name
 		);
@@ -86,9 +78,10 @@ function App() {
 		updatedGroceryList[index].completed = status;
 
 		setGroceryItems(updatedGroceryList);
+
+		console.log(status);
 	};
 
-	
 	//rendering item list
 	const renderGroceryList = () => {
 		return groceryItems.map((item, index) => (
@@ -99,7 +92,6 @@ function App() {
 						value={item.completed}
 						checked={item.completed}
 						onChange={(e) => {
-							console.log(e.target.checked);
 							handleUpdateCompleteStatus(e.target.checked, index);
 						}}
 					/>
@@ -119,48 +111,39 @@ function App() {
 		));
 	};
 
+	const selectAllTasks = () => {
+		const updatedGroceryList = [...groceryItems].map((item) => {
+			return {
+				...item,
+				completed: true,
+			};
+		});
+
+		setGroceryItems(updatedGroceryList);
+	};
+
 	return (
 		<main className="App">
 			<div>
-				<div>
-					{/* <button
-						onClick={() => {
-							const updatedGroceryList = [...groceryItems].map((item) => {
-								return {
-									...item,
-									completed: false,
-								};
-							});						
-
-							setGroceryItems(updatedGroceryList);
-						}}
-					>
-						Clear all checks
-					</button> */}
-					{isCompleted && <h4 className="success">You&#39;re done</h4>}
-					{/* {JSON.stringify(groceryItems)} */}
-					<div className="header">
-						<h1>Shopping List</h1>
-						{/* {inputVal} <button onClick={clearInputValue}>Clear input</button>  two way binding*/}
-						<img src={groceryCart} alt="" />
-						<input
-							type="text"
-							placeholder="Add an item"
-							className="item-input"
-							value={inputVal}
-							onChange={handleChangeInputValue}
-							onKeyDown={handleAddGroceryItem}
-						/>
-					</div>
+				<div>{isCompleted && <h4 className="success">You&#39;re done</h4>}</div>
+				<div className="header">
+					<h1>Grocery List</h1>
+					<img src={groceryCart} alt="" />
+					{groceryItems.length && <button onClick={selectAllTasks}>Select all items</button>}
+					{/* {groceryItems.length && <button>Delete all items</button>} */}
+					<input
+						type="text"
+						placeholder="Add an item"
+						className="item-input"
+						value={inputVal}
+						onChange={handleInputVal}
+						onKeyDown={handleAddGroceryItems}
+					/>
 				</div>
-				<ul>{renderGroceryList()}</ul>
 			</div>
+			<ul>{renderGroceryList()}</ul>
 		</main>
 	);
 }
-
-// const clearInputValue = ()=>{
-//   setInputVal('')
-// }
 
 export default App;

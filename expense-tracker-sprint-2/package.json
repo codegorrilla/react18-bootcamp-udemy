@@ -1,5 +1,5 @@
 {
-  "name": "expense-tracker",
+  "name": "expense-tracker-sprint-2",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,23 +11,7 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-<<<<<<< HEAD
     "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.11.1",
-    "@types/react": "^18.3.10",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.2",
-    "eslint": "^9.11.1",
-    "eslint-plugin-react": "^7.37.0",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.12",
-    "globals": "^15.9.0",
-    "vite": "^5.4.8"
-=======
-    "react-dom": "^18.3.1",
-    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
@@ -40,6 +24,5 @@
     "eslint-plugin-react-refresh": "^0.4.13",
     "globals": "^15.11.0",
     "vite": "^5.4.9"
->>>>>>> b33dee653ff52537b5b90a51bc3817ab8da61d18
   }
 }

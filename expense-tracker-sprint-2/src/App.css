@@ -1,10 +1,7 @@
 main {
   max-width: 500px;
   margin: 0 auto;
-<<<<<<< HEAD
-=======
   padding: 3rem;
->>>>>>> b33dee653ff52537b5b90a51bc3817ab8da61d18
 }
 
 .total-text {
@@ -33,11 +30,7 @@ button {
 }
 
 .card {
-<<<<<<< HEAD
-  box-shadow: 0.1px 1px 3px rgba(0, 0, 0, 0.27);
-=======
   box-shadow: 0.1px 1px 3px rgba(0,0,0,0.27);
->>>>>>> b33dee653ff52537b5b90a51bc3817ab8da61d18
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -53,11 +46,7 @@ button {
 .card-info p {
   font-weight: 500;
   font-size: 9px;
-<<<<<<< HEAD
-  color: grey;
-=======
   color: grey
->>>>>>> b33dee653ff52537b5b90a51bc3817ab8da61d18
 }
 
 .amount-text {
@@ -65,18 +54,9 @@ button {
 }
 
 .success {
-<<<<<<< HEAD
-  color: rgb(81, 190, 81);
-}
-
-.danger {
-  color: rgb(206, 76, 76);
-}
-=======
 color: rgb(81,190,81)
 }
 
 .danger {
   color: rgb(206,76,76)
 }
->>>>>>> b33dee653ff52537b5b90a51bc3817ab8da61d18
