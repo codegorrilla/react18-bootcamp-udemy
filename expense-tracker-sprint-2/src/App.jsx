@@ -1,5 +1,18 @@
 import { useState } from 'react';
 import './App.css';
+//how we want the data from inputs to be laid in an array
+// [{
+//   name: 'Salary',
+//   amount: 3000,
+//   type: 'income',
+//   Date:''
+// },
+// {
+//   name: 'Groceries',
+//   amount: 100,
+//   type: 'expense',
+//   Date:''
+// }]
 
 function App() {
 	//encapsulating all inputs into a single variable and single function
@@ -8,6 +21,13 @@ function App() {
 		amount: '',
 		statementType: 'income',
 	});
+
+	const [showError, setShowError] = useState({
+		statement: false,
+		amount: false,
+	});
+
+	const [statements, setStatements] = useState([]);
 
 	const handleUpdateInput = (e) => {
 		console.log(e.target.name);
@@ -18,14 +38,9 @@ function App() {
 		});
 	};
 
-	//input validation
-	const [showError, setShowError] = useState({
-		statement: false,
-		amount: false,
-	});
-
 	const handleAddNewStatement = () => {
-		const { statement, amount } = input;
+		//input validation
+		const { statement, amount, statementType } = input;
 
 		if (!statement) {
 			return setShowError({
@@ -38,16 +53,35 @@ function App() {
 				amount: true,
 			});
 		} else {
-			return setShowError({
+			setShowError({
 				statement: false,
 				amount: false,
 			});
 		}
+
+		setStatements([
+			...statements,
+			{
+				name: statement,
+				amount: parseFloat(amount).toFixed(2),
+				type: statementType,
+				date: new Date().toDateString(),
+			},
+		]);
+
+		setInput({
+			statement: '',
+			amount: '',
+			statementType: 'income',
+		});
+
+		//console.log(statements);
 	};
 
 	return (
 		<main>
 			<div>
+				{/* {JSON.stringify(statements)} */}
 				<h1 className='total-text'>0</h1>
 				<div className='input-container'>
 					<input
@@ -80,13 +114,24 @@ function App() {
 					<button onClick={handleAddNewStatement}>+</button>
 				</div>
 				<div>
-					<div className='card'>
-						<div className='card-info'>
-							<h4>Salary</h4>
-							<p>July 27th, 2024</p>
+					{statements.map(({ name, amount, type, date }) => (
+						<div
+							className='card'
+							key={name}
+						>
+							<div className='card-info'>
+								<h4>{name}</h4>
+								<p>{date}</p>
+							</div>
+							<p
+								className={`amount-text ${
+									type === 'income' ? 'success' : 'danger'
+								}`}
+							>
+								{type === 'income' ? '+' : '-'}${amount}
+							</p>
 						</div>
-						<p className='amount-text success'>+$3000</p>
-					</div>
+					))}
 				</div>
 			</div>
 		</main>
