@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  //encapsulating all inputs into a single variable and single function
+	//encapsulating all inputs into a single variable and single function
 	const [input, setInput] = useState({
 		statement: '',
 		amount: '',
@@ -18,7 +18,32 @@ function App() {
 		});
 	};
 
-  
+	//input validation
+	const [showError, setShowError] = useState({
+		statement: false,
+		amount: false,
+	});
+
+	const handleAddNewStatement = () => {
+		const { statement, amount } = input;
+
+		if (!statement) {
+			return setShowError({
+				statement: true,
+				amount: false,
+			});
+		} else if (!amount) {
+			return setShowError({
+				statement: false,
+				amount: true,
+			});
+		} else {
+			return setShowError({
+				statement: false,
+				amount: false,
+			});
+		}
+	};
 
 	return (
 		<main>
@@ -31,12 +56,18 @@ function App() {
 						value={input.statement}
 						name='statement'
 						onChange={handleUpdateInput}
+						style={
+							showError.statement ? { borderColor: 'rgb(206, 76, 76)' } : null
+						}
 					/>
 					<input
 						type='number'
 						value={input.amount}
 						name='amount'
 						onChange={handleUpdateInput}
+						style={
+							showError.amount ? { borderColor: 'rgb(206, 76, 76)' } : null
+						}
 					/>
 					<select
 						onChange={handleUpdateInput}
@@ -46,7 +77,7 @@ function App() {
 						<option value='income'>income</option>
 						<option value='expense'>expense</option>
 					</select>
-					<button>+</button>
+					<button onClick={handleAddNewStatement}>+</button>
 				</div>
 				<div>
 					<div className='card'>
