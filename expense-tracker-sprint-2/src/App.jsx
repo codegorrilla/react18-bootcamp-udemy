@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 //how we want the data from inputs to be laid in an array
@@ -29,6 +29,18 @@ function App() {
   });
 
   const [statements, setStatements] = useState([]);
+
+  const [total, setTotal] = useState(0);
+
+  const rendertotal = () => {
+    if (total > 0) {
+      return <h1 className="total-text success">+{Math.abs(total)}</h1>;
+    } else if (total < 0) {
+      return <h1 className="total-text danger">-{Math.abs(total)}</h1>;
+    } else {
+      return <h1 className="total-text">{Math.abs(total)}</h1>;
+    }
+  };
 
   const handleUpdateInput = (e) => {
     console.log(e.target.name);
@@ -80,11 +92,22 @@ function App() {
     //console.log(statements);
   };
 
+  useEffect(() => {
+    const newTotal = statements.reduce((sum, { amount, type }) => {
+      if (type === 'expense') {
+        return sum - parseFloat(amount);
+      } else {
+        return sum + parseFloat(amount);
+      }
+    }, 0);
+    setTotal(newTotal);
+  }, [statements]);
+
   return (
     <main>
       <div>
         {/* {JSON.stringify(statements)} */}
-        <h1 className="total-text">0</h1>
+        {rendertotal()}
         <div className="input-container">
           <input
             type="text"
