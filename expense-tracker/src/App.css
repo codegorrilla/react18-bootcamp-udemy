@@ -1,10 +1,6 @@
 main {
   max-width: 500px;
   margin: 0 auto;
-<<<<<<< HEAD
-=======
-  padding: 3rem;
->>>>>>> b33dee653ff52537b5b90a51bc3817ab8da61d18
 }
 
 .total-text {
@@ -33,11 +29,7 @@ button {
 }
 
 .card {
-<<<<<<< HEAD
   box-shadow: 0.1px 1px 3px rgba(0, 0, 0, 0.27);
-=======
-  box-shadow: 0.1px 1px 3px rgba(0,0,0,0.27);
->>>>>>> b33dee653ff52537b5b90a51bc3817ab8da61d18
   padding: 10px;
   display: flex;
   justify-content: space-between;
