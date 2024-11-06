@@ -1,8 +1,16 @@
 import './App.css';
-import HomePage from './pages/HomePage.jsx';
+import { Outlet } from 'react-router-dom';
+import NavBar from './components/NavBar';
 
 function App() {
-  return <HomePage />;
+  return (
+    <div className="App">
+      <main className="main_container">
+        <NavBar />
+        <Outlet />
+      </main>
+    </div>
+  );
 }
 
 export default App;
