@@ -10,6 +10,7 @@ import './index.css';
 import App from './App.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import HomePage from './pages/HomePage.jsx';
+import RecipePage from './pages/RecipePage.jsx';
 
 //defining routing rules
 const router = createBrowserRouter(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/recipe/:id" element={<RecipePage />} />
     </Route>,
   ),
 );
