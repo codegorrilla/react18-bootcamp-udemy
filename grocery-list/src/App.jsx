@@ -15,7 +15,7 @@ function App() {
 
 	const [isCompleted, setIsCompleted] = useState(false);
 
-	useEffect(()=>{
+	useEffect(() => {
 		//console.log('Called');
 		determineCompletedStatus();
 	}, [groceryItems]);
@@ -26,19 +26,19 @@ function App() {
 	};
 
 	//checking status of all list items
-	const determineCompletedStatus = ()=>{
-		if(!groceryItems.length){
+	const determineCompletedStatus = () => {
+		if (!groceryItems.length) {
 			return setIsCompleted(false);
 		}
 
 		let isAllCompleted = true;
 
-		groceryItems.forEach(item =>{
+		groceryItems.forEach((item) => {
 			if (!item.completed) isAllCompleted = false;
 		});
 
 		setIsCompleted(isAllCompleted);
-	}
+	};
 
 	//adding input values as list items
 	const handleAddGroceryItem = (e) => {
@@ -88,7 +88,6 @@ function App() {
 		setGroceryItems(updatedGroceryList);
 	};
 
-	
 	//rendering item list
 	const renderGroceryList = () => {
 		return groceryItems.map((item, index) => (
