@@ -1,6 +1,6 @@
 import Card from './Card';
 
-const recipes = [
+export const recipes = [
   {
     id: 1,
     name: 'Poke Bowl',
@@ -27,9 +27,9 @@ const recipes = [
   },
   {
     id: 4,
-    name: 'Kanahfey',
+    name: 'Kanafeh',
     image:
-      'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.n4ADdYkYSX5LhAKTopputQHaLH%26pid%3DApi&f=1&ipt=42fd727d8cff4ca1d0077cca7cf190a22c839e4676732d88a077cfffbb173f8f&ipo=images',
+      'https://i.pinimg.com/originals/1c/49/f1/1c49f13151a7b25cb1fd8bab1ddb105d.jpg',
     tag: 'Romantic Dinner',
     numberOfMinutes: 30,
   },

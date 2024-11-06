@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom';
+
 export default function NavBar() {
   return (
+    //Component element based navigation
     <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
+      <Link to='/'>Home</Link>
+      <Link to='/about'>About</Link>
     </nav>
   );
 }
